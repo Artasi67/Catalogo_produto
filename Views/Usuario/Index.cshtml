@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Início - Gerenciamento de Usuários";
+}
+
+<div class="container mt-4">
+    <div class="jumbotron bg-light p-4 mb-4 rounded shadow-sm">
+        <h1 class="display-5">Bem-vindo ao Gerenciamento de Usuários</h1>
+        <p class="lead">Aqui você pode cadastrar novos usuários e visualizar todos os usuários registrados.</p>
+        <hr class="my-4" />
+        <div class="d-flex gap-3">
+            <a asp-action="Cadastro" class="btn btn-success btn-lg">
+                <i class="bi bi-person-plus-fill me-1"></i> Novo Usuário
+            </a>
+            <a asp-action="Listar" class="btn btn-primary btn-lg">
+                <i class="bi bi-card-list me-1"></i> Listar Usuários
+            </a>
+        </div>
+    </div>
+</div>
