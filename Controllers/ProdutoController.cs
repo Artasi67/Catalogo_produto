@@ -45,8 +45,8 @@ namespace catalogo_produto.Controllers
         [Authorize]
         public async Task<ActionResult> Cadastrar()
         {
-            var categorias = await _dbConfig.categorias.ToListAsync();
-            return View(categorias);
+            ViewBag.categorias = await _dbConfig.categorias.ToListAsync();
+            return View();
         }
 
         [Authorize]

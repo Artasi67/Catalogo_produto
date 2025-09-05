@@ -1,5 +1,6 @@
 ﻿using catalogo_produto.Config;
 using catalogo_produto.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +11,7 @@ namespace catalogo_produto.Controllers
         private readonly DbConfig _dbconfig;
 
         public UsuarioController(DbConfig dbconfig)
-        { 
+        {
             _dbconfig = dbconfig;
         }
 
@@ -19,12 +20,14 @@ namespace catalogo_produto.Controllers
             return View();
         }
 
+        [Authorize]
         public async Task<ActionResult> Editar(int id)
         {
             var usuario = await _dbconfig.usuarios.FindAsync(id);
             return View(usuario);
         }
 
+        [Authorize]
         public async Task<ActionResult> Listar()
         {
             var usuarios = await _dbconfig.usuarios.ToListAsync();
@@ -36,7 +39,7 @@ namespace catalogo_produto.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public async Task<ActionResult> Salvar(Usuario usuario)
         {
@@ -44,6 +47,7 @@ namespace catalogo_produto.Controllers
             return RedirectToRoute("Cadastro", "Usuario"); //return View("Cadastro");
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Atualizar(Usuario usuario)
         {
@@ -52,6 +56,7 @@ namespace catalogo_produto.Controllers
             return RedirectToRoute("Cadastro");
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task<ActionResult> Deletar(int id)
         {
