@@ -24,7 +24,10 @@ namespace catalogo_produto.Controllers
 
         public async Task<ActionResult> Listar()
         {
-            var produtos = await _dbConfig.produtos.FindAsync();
+            var produtos = await _dbConfig.produtos
+                .Include(p => p.categoria)
+                .Include(p => p.usuario)
+                .ToListAsync();
             return View(produtos);
         }
 
